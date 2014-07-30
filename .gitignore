@@ -1,0 +1,15 @@
+*.elc
+*.dat
+.recentf*
+.smex-items*
+.mc-lists.el
+.saved-places
+.DS_Store
+places
+tramp
+custom.el
+backups/
+elpa/
+eshell/
+auto-save-list/
+url/
