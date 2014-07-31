@@ -285,20 +285,22 @@
   (define-key scala-mode-map (kbd "C-c C-z") 'fun-sbt-switch-to))
 
 (fun-after-load 'scheme
-  (setq scheme-program-name "petite")
+  (setq scheme-program-name "petite"
+        scheme-macro-expand-command "(expand `%s)")
 
   (require 'iuscheme)
-  (fun-after-load 'iuscheme
-    (define-key inferior-scheme-mode-map (kbd "RET") 'comint-send-input))
+  (define-key inferior-scheme-mode-map (kbd "RET") 'comint-send-input)
 
   (require 'scheme-here)
-  (fun-after-load 'scheme-here
-    (define-key scheme-mode-map (kbd "C-c M-j") 'run-scheme-here)
-    (define-key scheme-mode-map (kbd "C-x C-e") 'scheme-here-send-sexp)
-    (define-key scheme-mode-map (kbd "C-c C-r") 'scheme-here-send-region)
-    (define-key scheme-mode-map (kbd "C-c C-e") 'scheme-here-send-def)
-    (define-key scheme-mode-map (kbd "C-c C-l") 'scheme-here-load-file)
-    (define-key scheme-mode-map (kbd "C-c C-z") 'switch-to-scheme-here)))
+  (define-key scheme-mode-map (kbd "C-c M-j") 'run-scheme-here)
+  (define-key scheme-mode-map (kbd "C-x C-e") 'scheme-here-send-sexp)
+  (define-key scheme-mode-map (kbd "C-c C-r") 'scheme-here-send-region)
+  (define-key scheme-mode-map (kbd "C-c C-e") 'scheme-here-send-def)
+  (define-key scheme-mode-map (kbd "C-c C-b") 'scheme-here-eval-buffer)
+  (define-key scheme-mode-map (kbd "C-c C-t") 'scheme-here-trace-procedure)
+  (define-key scheme-mode-map (kbd "C-c C-x") 'scheme-here-expand-current-form)
+  (define-key scheme-mode-map (kbd "C-c C-l") 'scheme-here-load-file)
+  (define-key scheme-mode-map (kbd "C-c C-z") 'switch-to-scheme-here))
 
 ;; utils
 (defun fun-indent-buffer ()
@@ -383,5 +385,4 @@
   (define-key sp-keymap (kbd "M-D") 'sp-splice-sexp)
   (define-key sp-keymap (kbd "C-M-<backspace>") 'sp-splice-sexp-killing-backward))
 
-(when window-system
-  (eshell))
+(when window-system (eshell))
