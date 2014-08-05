@@ -159,6 +159,8 @@
         eshell-rc-script (concat user-emacs-directory "profile")
         eshell-review-quick-commands t
         eshell-prompt-function 'fun-eshell-prompt)
+  (when (executable-find "fortune")
+    (setq eshell-banner-message ""))
   (add-to-list 'eshell-visual-commands "ssh")
   (add-to-list 'eshell-visual-commands "tail")
   (add-hook 'eshell-mode-hook 'eshell-smart-initialize)
