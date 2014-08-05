@@ -269,9 +269,6 @@
                "\/" "." (replace-regexp-in-string
                          ".+?\/src\/main\/scala\/" "" pwd)))))
 
-  (fun-after-load 'find-file-in-project
-    (setq ffip-patterns (append '("*.scala" "*.sbt") ffip-patterns)))
-
   (setq sbt:clear-buffer-before-command nil
         compilation-skip-threshold 1)
   (define-key sbt:mode-map (kbd "C-a") 'comint-bol)
